@@ -112,15 +112,17 @@ def main():
 
                 def calculate_hash(filename):
                     with open(filename, 'rb') as file:
-                    content = file.read()
-                    return hashlib.sha256(content).hexdigest()
+                    	content = file.read()
+                    	return hashlib.sha256(content).hexdigest()
                     
                 url = 'https://raw.githubusercontent.com/BlankHtmlPage/SpectraOS/main/spectraosupdated.py'
                 filename = 'spectraosupdated.py'
+                print("Проверка наличий обновлений...")
                 download_file(url, filename)
                 existing_hash = calculate_hash("SpectraOS.py")
                 new_hash = calculate_hash('spectraosupdated.py')
                 if existing_hash != new_hash:
+                    print("Обновление найдено! Обновляемся...")
                     os.system('python updater.py')
                     exit(15)
                 else:
@@ -179,4 +181,4 @@ if __name__ == '__main__':
         create_account(username, password)
         main()
 
-#update is working!!!
+#update is working!!!        yay!
