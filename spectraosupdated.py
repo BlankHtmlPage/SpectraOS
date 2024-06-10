@@ -4,7 +4,7 @@ import random
 from time import sleep as w
 
 def delete_account(username):
-    with open('root/accounts.json', 'r') as f:
+    with open('sccounts.json', 'r') as f:
         accounts = json.load(f)
 
     for account in accounts:
@@ -12,17 +12,17 @@ def delete_account(username):
             accounts.remove(account)
             break
     
-    with open('root/accounts.json', 'w') as f:
+    with open('sccounts.json', 'w') as f:
         json.dump(accounts, f, indent=4)
 
 def file_exists(file_path):
     return os.path.exists(file_path)
 
 def create_account(username, password):
-    if not file_exists("root/accounts.json"):
+    if not file_exists("sccounts.json"):
         accounts = []
     else:
-        with open("root/accounts.json", "r") as file:
+        with open("sccounts.json", "r") as file:
             accounts = json.load(file)
 
     for account in accounts:
@@ -36,15 +36,15 @@ def create_account(username, password):
     print("Аккаунт успешно создан.")
 
 def save_accounts(accounts):
-    with open("root/accounts.json", "w") as file:
+    with open("sccounts.json", "w") as file:
         json.dump(accounts, file)
 
 def login(username, password):
-    if not file_exists("root/accounts.json"):
+    if not file_exists("sccounts.json"):
         print("Ошибка 2: Аккаунт не существует.")
         return False
 
-    with open("root/accounts.json", "r") as file:
+    with open("sccounts.json", "r") as file:
         accounts = json.load(file)
 
     for account in accounts:
@@ -56,10 +56,10 @@ def login(username, password):
     return False
 
 def main():
-    if not file_exists("root/accounts.json"):
+    if not file_exists("sccounts.json"):
         accounts = []
     else:
-        with open("root/accounts.json", "r") as file:
+        with open("sccounts.json", "r") as file:
             accounts = json.load(file)
 
     if login(username, password):
@@ -155,11 +155,11 @@ def main():
                  w(2)
                  exit(666)
              if com == "help":
-                 print("Команды: help, about, deleteaccount, dir, wget, wiim, info, echo, restart, exit")
+                 print("Команды: changelog, help, about, deleteaccount, dir, wget, wiim, info, echo, restart, exit")
              if com == "about":
                   print("SpectraOS 1.1")
                   print(random_line)
-                  print("Сборка от 21.02.2024")
+                  print("Сборка от 24.08.2024")
              if com == "deleteaccount":
                   utd = input('Введите имя пользователя, которого необходимо удалить: >')
                   delete_account(utd)
@@ -181,4 +181,3 @@ if __name__ == '__main__':
         create_account(username, password)
         main()
 
-#update is working!!!        yay!
