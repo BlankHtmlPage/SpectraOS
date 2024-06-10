@@ -4,7 +4,7 @@ import random
 from time import sleep as w
 
 def delete_account(username):
-    with open('sccounts.json', 'r') as f:
+    with open('accounts.json', 'r') as f:
         accounts = json.load(f)
 
     for account in accounts:
@@ -12,17 +12,17 @@ def delete_account(username):
             accounts.remove(account)
             break
     
-    with open('sccounts.json', 'w') as f:
+    with open('accounts.json', 'w') as f:
         json.dump(accounts, f, indent=4)
 
 def file_exists(file_path):
     return os.path.exists(file_path)
 
 def create_account(username, password):
-    if not file_exists("sccounts.json"):
+    if not file_exists("accounts.json"):
         accounts = []
     else:
-        with open("sccounts.json", "r") as file:
+        with open("accounts.json", "r") as file:
             accounts = json.load(file)
 
     for account in accounts:
@@ -36,15 +36,15 @@ def create_account(username, password):
     print("Аккаунт успешно создан.")
 
 def save_accounts(accounts):
-    with open("sccounts.json", "w") as file:
+    with open("accounts.json", "w") as file:
         json.dump(accounts, file)
 
 def login(username, password):
-    if not file_exists("sccounts.json"):
+    if not file_exists("accounts.json"):
         print("Ошибка 2: Аккаунт не существует.")
         return False
 
-    with open("sccounts.json", "r") as file:
+    with open("accounts.json", "r") as file:
         accounts = json.load(file)
 
     for account in accounts:
@@ -56,10 +56,10 @@ def login(username, password):
     return False
 
 def main():
-    if not file_exists("sccounts.json"):
+    if not file_exists("accounts.json"):
         accounts = []
     else:
-        with open("sccounts.json", "r") as file:
+        with open("accounts.json", "r") as file:
             accounts = json.load(file)
 
     if login(username, password):
